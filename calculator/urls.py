@@ -1,7 +1,10 @@
-from django.urls import path
-from .views import ScenarioListCreateView, ScenarioRetrieveView
+from django.contrib import admin
+from django.urls import path, include
+from calculator.views import LoanListCreateView, LoanRetrieveView
 
 urlpatterns = [
-    path('scenarios/', ScenarioListCreateView.as_view(), name='scenario-list'),
-    path('scenarios/<int:pk>/', ScenarioRetrieveView.as_view(), name='scenario-detail'),
+    path('admin/', admin.site.urls),
+    path('api/Loans/', LoanListCreateView.as_view(), name='Loan-list'),
+    path('api/Loans/<int:pk>/', LoanRetrieveView.as_view(), name='Loan-detail'),
+    path('api-auth/', include('rest_framework.urls')),
 ]

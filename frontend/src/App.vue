@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Loan Payment Calculator</h1>
-    <form @submit.prevent="createScenario">
+    <form @submit.prevent="createLoan">
       <label>Purchase Price:</label>
       <input type="number" v-model.number="purchasePrice" required />
 
@@ -20,7 +20,7 @@
     <table>
       <thead>
         <tr>
-          <th>Scenario ID</th>
+          <th>Loan ID</th>
           <th>Purchase Price</th>
           <th>Down Payment</th>
           <th>Mortgage Term</th>
@@ -32,16 +32,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="scenario in scenarios" :key="scenario.id">
-          <td>{{ scenario.id }}</td>
-          <td>{{ scenario.purchase_price }}</td>
-          <td>{{ scenario.down_payment }}</td>
-          <td>{{ scenario.mortgage_term }}</td>
-          <td>{{ scenario.interest_rate }}</td>
-          <td>{{ scenario.total_loan_amount }}</td>
-          <td>{{ scenario.monthly_payment }}</td>
-          <td>{{ scenario.total_amount_paid }}</td>
-          <td>{{ scenario.total_interest_paid }}</td>
+        <tr v-for="Loan in Loans" :key="Loan.id">
+          <td>{{ Loan.id }}</td>
+          <td>{{ Loan.purchase_price }}</td>
+          <td>{{ Loan.down_payment }}</td>
+          <td>{{ Loan.mortgage_term }}</td>
+          <td>{{ Loan.interest_rate }}</td>
+          <td>{{ Loan.total_loan_amount }}</td>
+          <td>{{ Loan.monthly_payment }}</td>
+          <td>{{ Loan.total_amount_paid }}</td>
+          <td>{{ Loan.total_interest_paid }}</td>
         </tr>
       </tbody>
     </table>
@@ -58,30 +58,30 @@ export default {
       downPayment: null,
       mortgageTerm: null,
       interestRate: null,
-      scenarios: [],
+      Loans: [],
     };
   },
   methods: {
-    createScenario() {
+    createLoan() {
       axios
-        .post("scenarios/", {
+        .post("Loans/", {
           purchase_price: this.purchasePrice,
           down_payment: this.downPayment,
           mortgage_term: this.mortgageTerm,
           interest_rate: this.interestRate,
         })
         .then((response) => {
-          this.scenarios.push(response.data);
+          this.Loans.push(response.data);
         })
         .catch((error) => {
           console.log(error);
         });
     },
-    fetchScenarios() {
+    fetchLoans() {
       axios
-        .get("scenarios/")
+        .get("Loans/")
         .then((response) => {
-          this.scenarios = response.data;
+          this.Loans = response.data;
         })
         .catch((error) => {
           console.log(error);
@@ -89,7 +89,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchScenarios();
+    this.fetchLoans();
   },
 };
 </script>

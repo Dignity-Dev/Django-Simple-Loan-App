@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Scenario
+from .models import Loan
 
-class ScenarioSerializer(serializers.ModelSerializer):
+class LoanSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Scenario
+        model = Loan
         fields = '__all__'

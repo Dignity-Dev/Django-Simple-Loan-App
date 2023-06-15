@@ -1,13 +1,13 @@
 from django.shortcuts import render
 
 from rest_framework import generics
-from .models import Scenario
-from .serializers import ScenarioSerializer
+from .models import Loan
+from .serializers import LoanSerializer
 
-class ScenarioListCreateView(generics.ListCreateAPIView):
-    queryset = Scenario.objects.all()
-    serializer_class = ScenarioSerializer
+class LoanListCreateView(generics.ListCreateAPIView):
+    queryset = Loan.objects.all()
+    serializer_class = LoanSerializer
 
-class ScenarioRetrieveView(generics.RetrieveAPIView):
-    queryset = Scenario.objects.all()
-    serializer_class = ScenarioSerializer
+class LoanRetrieveView(generics.RetrieveAPIView):
+    queryset = Loan.objects.all()
+    serializer_class = LoanSerializer
