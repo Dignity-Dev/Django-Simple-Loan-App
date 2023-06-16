@@ -1,6 +1,4 @@
 from django.db import models
-
-
 class Loan(models.Model):
     purchase_price = models.DecimalField(max_digits=10, decimal_places=2)
     down_payment = models.DecimalField(max_digits=10, decimal_places=2)
